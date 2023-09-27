@@ -107,7 +107,7 @@ class Exllamav2HF(PreTrainedModel):
             logits = self.ex_model.forward(seq_tensor[-1:].view(1, -1), ex_cache).to(input_ids.device)
         else:
             ex_cache.current_seq_len = 0
-            logits = self.ex_model.forward(seq_tensor.view(1, -1), ex_cache, last_id_only=False)
+            logits = self.ex_model.forward(seq_tensor.view(1, -1), ex_cache)
 
         if is_negative:
             self.past_seq_negative = seq_tensor
